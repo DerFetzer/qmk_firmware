@@ -111,6 +111,8 @@ enum combos {
   HL_UNDO,
   LM_REDO,
   HM_SAVE,
+  LEDO_HOME,
+  DOUP_END,
 };
 
 const uint16_t PROGMEM nr_combo[] = {KC_N, KC_R, COMBO_END};
@@ -119,6 +121,8 @@ const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
 const uint16_t PROGMEM hl_combo[] = {KC_H, KC_L, COMBO_END};
 const uint16_t PROGMEM lm_combo[] = {KC_L, KC_M, COMBO_END};
 const uint16_t PROGMEM hm_combo[] = {KC_H, KC_M, COMBO_END};
+const uint16_t PROGMEM ledo_combo[] = {KC_LEFT, KC_DOWN, COMBO_END};
+const uint16_t PROGMEM doup_combo[] = {KC_DOWN, KC_UP, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [NR_COPY]  = COMBO(nr_combo, C(KC_C)),
@@ -127,6 +131,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [HL_UNDO]  = COMBO(hl_combo, C(DE_Z)),
   [LM_REDO]  = COMBO(lm_combo, C(DE_Y)),
   [HM_SAVE]  = COMBO(hm_combo, C(KC_S)),
+  [LEDO_HOME]= COMBO(ledo_combo, KC_HOME),
+  [DOUP_END] = COMBO(doup_combo, KC_END),
 };
 
 /*
