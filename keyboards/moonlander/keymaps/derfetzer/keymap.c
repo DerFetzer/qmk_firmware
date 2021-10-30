@@ -47,7 +47,7 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           WEBUSB_PAIR,             _______,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,        
+    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           _______,                 _______,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,        
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,          
     MO(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),     
     KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           LT(0,DE_Z),     LT(0,KC_COMMA), LT(0,KC_DOT),   KC_K,           KC_RSHIFT,      
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,        _______,        _______,        _______,        _______,        _______,        _______,                 _______,        _______,        _______,        DE_SLSH,        DE_ASTR,        _______,        _______,        
     _______,        KC_PGUP,        KC_BSPACE,      KC_UP,          KC_DELETE,      KC_PGDOWN,      _______,                 _______,        _______,        KC_7,           KC_8,           KC_9,           DE_PLUS,        DE_MINS,        
     _______,        KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_END,         _______,                 _______,        _______,        KC_4,           KC_5,           KC_6,           KC_COMMA,       KC_DOT,         
-    _______,        _______,        _______,        _______,        KC_ENTER,       _______,                                                 KC_0,           KC_1,           KC_2,           KC_3,           DE_SCLN,        DE_SLSH,        
+    _______,        _______,        _______,        _______,        KC_ENTER,       _______,                                                 KC_0,           KC_1,           KC_2,           KC_3,           DE_SCLN,        _______,        
     _______,        _______,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,      _______,        _______,        
                                                                     _______,        _______,        _______,                 _______,        _______,        _______
   ),
@@ -197,6 +197,11 @@ void rgb_matrix_indicators_user(void) {
       break;
     case 4:
       set_led_color(-1, GREEN);
+      // WASD
+      set_led_color(7, ORANGE);
+      set_led_color(11, ORANGE);
+      set_led_color(12, ORANGE);
+      set_led_color(17, ORANGE);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
