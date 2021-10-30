@@ -34,6 +34,7 @@ enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   DE_LSPO,
   DE_RSPC,
+  DE_QUO_O,
 };
 
 enum layer_names {
@@ -48,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           WEBUSB_PAIR,             _______,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,        
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,          
-    MO(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,          KC_R,           KC_S,           KC_G,           LT(1,KC_Q),     
+    MO(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),     
     KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           LT(0,DE_Z),     LT(0,KC_COMMA), LT(0,KC_DOT),   KC_K,           KC_RSHIFT,      
     KC_LCTRL,       KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 _______,                        TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       
                                                                     KC_SPACE,       KC_DELETE,      _______,                 KC_RCTRL,       KC_BSPACE,      KC_ENTER
@@ -87,6 +88,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+const key_override_t capital_eszett_key_override = ko_make_basic(MOD_MASK_SHIFT, DE_SS, ALGR(KC_G));
+const key_override_t deg_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_1, DE_DEG);
+const key_override_t paragraph_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_2, DE_SECT);
+const key_override_t dollar_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_6, DE_DLR);
+const key_override_t euro_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_7, DE_EURO);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &capital_eszett_key_override,
+    &paragraph_key_override,
+    &deg_key_override,
+    &dollar_key_override,
+    &euro_key_override,
+    NULL // Null terminate the array of overrides!
+};
+
 /*
 g_led_config
 
@@ -111,6 +128,7 @@ extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
+  // debug_enable=true;
 }
 
 void set_led_color(int i, int h, int s, int v) {
@@ -187,7 +205,13 @@ void rgb_matrix_indicators_user(void) {
   }
 }
 
+void gruppenumschaltung(uint16_t keycode) {
+  tap_code16(ALGR(KC_F)); 
+  tap_code16(keycode); 
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  uprintf("keycode %d\r\n", keycode);
   switch (keycode) {
     // ORYX
     case DE_LSPO:
@@ -221,6 +245,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16(KC_COMMA);
       } else if (record->event.pressed) {
         tap_code16(C(KC_V)); // Intercept hold function to send Ctrl-V
+      }
+      return false;
+    // Gruppenumschaltung
+    case DE_QUO_O:
+      if (record->event.pressed) {
+        gruppenumschaltung(KC_X);
       }
       return false;
   }
