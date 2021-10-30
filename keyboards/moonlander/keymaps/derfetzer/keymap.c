@@ -13,7 +13,7 @@
 #define MOON_LED_LEVEL LED_LEVEL
 
 // Shorter codes
-#define KC_MUTE KC_AUDIO_MUTE 
+#define KC_MUTE KC_AUDIO_MUTE
 #define KC_V_D KC_AUDIO_VOL_DOWN
 #define KC_V_U KC_AUDIO_VOL_UP
 #define KC_BR_D KC_BRIGHTNESS_DOWN
@@ -24,27 +24,28 @@
 #define T_L_COL TOGGLE_LAYER_COLOR
 
 // colors
-#define PETROL 136,204,163
-#define ORANGE 25,255,237
-#define GREEN 63,156,208
-#define BLUE 154,255,255
-#define RED 0,239,185
+#define PETROL 136, 204, 163
+#define ORANGE 25, 255, 237
+#define GREEN 63, 156, 208
+#define BLUE 154, 255, 255
+#define RED 0, 239, 185
 
 enum custom_keycodes {
-  RGB_SLD = ML_SAFE_RANGE,
-  DE_LSPO,
-  DE_RSPC,
-  DE_QUO_O,
+    RGB_SLD = ML_SAFE_RANGE,
+    DE_LSPO,
+    DE_RSPC,
+    DE_QUO_O,
 };
 
 enum layer_names {
-  BONE,
-  SYMBOLS,
-  CONTROLS,
-  MEDIA,
-  QWERTZ,
+    BONE,
+    SYMBOLS,
+    CONTROLS,
+    MEDIA,
+    QWERTZ,
 };
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           _______,                 _______,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,        
@@ -87,12 +88,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                     KC_ENTER,       KC_DELETE,      KC_INT5,                 KC_INT6,        KC_BSPACE,      KC_SPACE
   ),
 };
+// clang-format on
 
 const key_override_t capital_eszett_key_override = ko_make_basic(MOD_MASK_SHIFT, DE_SS, ALGR(KC_G));
-const key_override_t deg_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_1, DE_DEG);
-const key_override_t paragraph_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_2, DE_SECT);
-const key_override_t dollar_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_6, DE_DLR);
-const key_override_t euro_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_7, DE_EURO);
+const key_override_t deg_key_override            = ko_make_basic(MOD_MASK_SHIFT, KC_1, DE_DEG);
+const key_override_t paragraph_key_override      = ko_make_basic(MOD_MASK_SHIFT, KC_2, DE_SECT);
+const key_override_t dollar_key_override         = ko_make_basic(MOD_MASK_SHIFT, KC_6, DE_DLR);
+const key_override_t euro_key_override           = ko_make_basic(MOD_MASK_SHIFT, KC_7, DE_EURO);
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
@@ -101,39 +103,41 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &deg_key_override,
     &dollar_key_override,
     &euro_key_override,
-    NULL // Null terminate the array of overrides!
+    NULL  // Null terminate the array of overrides!
 };
 
 enum combos {
-  NR_COPY,
-  RS_PASTE,
-  NS_CUT,
-  HL_UNDO,
-  LM_REDO,
-  HM_SAVE,
-  LEDO_HOME,
-  DOUP_END,
+    NR_COPY,
+    RS_PASTE,
+    NS_CUT,
+    HL_UNDO,
+    LM_REDO,
+    HM_SAVE,
+    LEDO_HOME,
+    DOUP_END,
 };
 
-const uint16_t PROGMEM nr_combo[] = {KC_N, KC_R, COMBO_END};
-const uint16_t PROGMEM rs_combo[] = {KC_R, KC_S, COMBO_END};
-const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
-const uint16_t PROGMEM hl_combo[] = {KC_H, KC_L, COMBO_END};
-const uint16_t PROGMEM lm_combo[] = {KC_L, KC_M, COMBO_END};
-const uint16_t PROGMEM hm_combo[] = {KC_H, KC_M, COMBO_END};
+const uint16_t PROGMEM nr_combo[]   = {KC_N, KC_R, COMBO_END};
+const uint16_t PROGMEM rs_combo[]   = {KC_R, KC_S, COMBO_END};
+const uint16_t PROGMEM ns_combo[]   = {KC_N, KC_S, COMBO_END};
+const uint16_t PROGMEM hl_combo[]   = {KC_H, KC_L, COMBO_END};
+const uint16_t PROGMEM lm_combo[]   = {KC_L, KC_M, COMBO_END};
+const uint16_t PROGMEM hm_combo[]   = {KC_H, KC_M, COMBO_END};
 const uint16_t PROGMEM ledo_combo[] = {KC_LEFT, KC_DOWN, COMBO_END};
 const uint16_t PROGMEM doup_combo[] = {KC_DOWN, KC_UP, COMBO_END};
 
+// clang-format off
 combo_t key_combos[COMBO_COUNT] = {
-  [NR_COPY]  = COMBO(nr_combo, C(KC_C)),
-  [RS_PASTE] = COMBO(rs_combo, C(KC_V)),
-  [NS_CUT]   = COMBO(ns_combo, C(KC_X)),
-  [HL_UNDO]  = COMBO(hl_combo, C(DE_Z)),
-  [LM_REDO]  = COMBO(lm_combo, C(DE_Y)),
-  [HM_SAVE]  = COMBO(hm_combo, C(KC_S)),
-  [LEDO_HOME]= COMBO(ledo_combo, KC_HOME),
-  [DOUP_END] = COMBO(doup_combo, KC_END),
+  [NR_COPY]   = COMBO(nr_combo, C(KC_C)),
+  [RS_PASTE]  = COMBO(rs_combo, C(KC_V)),
+  [NS_CUT]    = COMBO(ns_combo, C(KC_X)),
+  [HL_UNDO]   = COMBO(hl_combo, C(DE_Z)),
+  [LM_REDO]   = COMBO(lm_combo, C(DE_Y)),
+  [HM_SAVE]   = COMBO(hm_combo, C(KC_S)),
+  [LEDO_HOME] = COMBO(ledo_combo, KC_HOME),
+  [DOUP_END]  = COMBO(doup_combo, KC_END),
 };
+// clang-format on
 
 /*
 g_led_config
@@ -158,117 +162,122 @@ right
 extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
-  rgb_matrix_enable();
-  // debug_enable=true;
+    rgb_matrix_enable();
+    // debug_enable=true;
 }
 
 void set_led_color(int i, int h, int s, int v) {
-  HSV hsv = {
-    .h = h,
-    .s = s,
-    .v = v,
-  };
-  RGB rgb = {
-    .r = 0,
-    .g = 0,
+    HSV hsv = {
+        .h = h,
+        .s = s,
+        .v = v,
+    };
+    RGB rgb = {
+        .r = 0,
+        .g = 0,
+        .b = 0,
     .b = 0,    
-  };
-  float f = 0.0;
-  if (hsv.h || hsv.s || hsv.v) {
-    rgb = hsv_to_rgb( hsv );
-    f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-  }
-  if (i < 0) {
-    rgb_matrix_set_color_all( f * rgb.r, f * rgb.g, f * rgb.b );
-  } else {
-    rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
-  }
+        .b = 0,
+    };
+    float f = 0.0;
+    if (hsv.h || hsv.s || hsv.v) {
+        rgb = hsv_to_rgb(hsv);
+        f   = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+    }
+    if (i < 0) {
+        rgb_matrix_set_color_all(f * rgb.r, f * rgb.g, f * rgb.b);
+    } else {
+        rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b);
+    }
 }
 
 void rgb_matrix_indicators_user(void) {
-  if (keyboard_config.disable_layer_led) { return; }
-  switch (biton32(layer_state)) {
-    case 0:
-      set_led_color(-1, PETROL);
-      break;
-    case 1:
-      set_led_color(-1, ORANGE);
-      break;
-    case 2:
-      set_led_color(-1, 0, 0, 0);
-      // Arrows
-      set_led_color(12, RED);
-      set_led_color(16, RED);
-      set_led_color(17, RED);
-      set_led_color(22, RED);
-      // Num
-      set_led_color(57, BLUE);
-      set_led_color(52, BLUE);
-      set_led_color(47, BLUE);
-      set_led_color(58, BLUE);
-      set_led_color(53, BLUE);
-      set_led_color(48, BLUE);
-      set_led_color(59, BLUE);
-      set_led_color(54, BLUE);
-      set_led_color(49, BLUE);
-      set_led_color(55, BLUE);
-      break;
-    case 3:
-      set_led_color(-1, RED);
-      // Mouse
-      set_led_color(12, GREEN);
-      set_led_color(16, GREEN);
-      set_led_color(17, GREEN);
-      set_led_color(22, GREEN);
-      // Wheel
-      set_led_color(14, BLUE);
-      set_led_color(18, BLUE);
-      set_led_color(19, BLUE);
-      set_led_color(24, BLUE);
-      break;
-    case 4:
-      set_led_color(-1, GREEN);
-      // WASD
-      set_led_color(7, ORANGE);
-      set_led_color(11, ORANGE);
-      set_led_color(12, ORANGE);
-      set_led_color(17, ORANGE);
-      break;
-   default:
-    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-      rgb_matrix_set_color_all(0, 0, 0);
-    break;
-  }
+    if (keyboard_config.disable_layer_led) {
+        return;
+    }
+    switch (biton32(layer_state)) {
+        case 0:
+            set_led_color(-1, PETROL);
+            break;
+        case 1:
+            set_led_color(-1, ORANGE);
+            break;
+        case 2:
+            set_led_color(-1, 0, 0, 0);
+            // Arrows
+            set_led_color(12, RED);
+            set_led_color(16, RED);
+            set_led_color(17, RED);
+            set_led_color(22, RED);
+            // Num
+            set_led_color(57, BLUE);
+            set_led_color(52, BLUE);
+            set_led_color(47, BLUE);
+            set_led_color(58, BLUE);
+            set_led_color(53, BLUE);
+            set_led_color(48, BLUE);
+            set_led_color(59, BLUE);
+            set_led_color(54, BLUE);
+            set_led_color(49, BLUE);
+            set_led_color(55, BLUE);
+            break;
+        case 3:
+            set_led_color(-1, RED);
+            // Mouse
+            set_led_color(12, GREEN);
+            set_led_color(16, GREEN);
+            set_led_color(17, GREEN);
+            set_led_color(22, GREEN);
+            // Wheel
+            set_led_color(14, BLUE);
+            set_led_color(18, BLUE);
+            set_led_color(19, BLUE);
+            set_led_color(24, BLUE);
+            break;
+        case 4:
+            set_led_color(-1, GREEN);
+            // WASD
+            set_led_color(7, ORANGE);
+            set_led_color(11, ORANGE);
+            set_led_color(12, ORANGE);
+            set_led_color(17, ORANGE);
+            break;
+        default:
+            if (rgb_matrix_get_flags() == LED_FLAG_NONE) rgb_matrix_set_color_all(0, 0, 0);
+            break;
+    }
 }
 
 void gruppenumschaltung(uint16_t keycode) {
+    tap_code16(ALGR(KC_F));
   tap_code16(ALGR(KC_F)); 
+    tap_code16(ALGR(KC_F));
+    tap_code16(keycode);
   tap_code16(keycode); 
+    tap_code16(keycode);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  uprintf("keycode %d\r\n", keycode);
-  switch (keycode) {
-    // ORYX
-    case DE_LSPO:
-      perform_space_cadet(record, keycode, KC_LSFT, KC_LSFT, KC_8);
-      return false;
-    case DE_RSPC:
-      perform_space_cadet(record, keycode, KC_LSFT, KC_LSFT, KC_9);
-      return false;
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-    // Gruppenumschaltung
-    case DE_QUO_O:
-      if (record->event.pressed) {
-        gruppenumschaltung(KC_X);
-      }
-      return false;
-  }
-  return true;
+    uprintf("keycode %d\r\n", keycode);
+    switch (keycode) {
+        // ORYX
+        case DE_LSPO:
+            perform_space_cadet(record, keycode, KC_LSFT, KC_LSFT, KC_8);
+            return false;
+        case DE_RSPC:
+            perform_space_cadet(record, keycode, KC_LSFT, KC_LSFT, KC_9);
+            return false;
+        case RGB_SLD:
+            if (record->event.pressed) {
+                rgblight_mode(1);
+            }
+            return false;
+        // Gruppenumschaltung
+        case DE_QUO_O:
+            if (record->event.pressed) {
+                gruppenumschaltung(KC_X);
+            }
+            return false;
+    }
+    return true;
 }
-
-
