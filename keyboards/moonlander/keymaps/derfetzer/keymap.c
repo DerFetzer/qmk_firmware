@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           _______,                 _______,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,        
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,          
     MO(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),     
-    KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           LT(0,DE_Z),     LT(0,KC_COMMA), LT(0,KC_DOT),   KC_K,           KC_RSHIFT,      
+    KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_K,           KC_RSHIFT,      
     KC_LCTRL,       KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 _______,                        TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       
                                                                     KC_SPACE,       KC_DELETE,      _______,                 KC_RCTRL,       KC_BSPACE,      KC_ENTER
   ),
@@ -72,10 +72,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [MEDIA]    = LAYOUT_moonlander(
     AU_TOG,         KC_MUTE,        KC_V_D,         KC_V_U,         KC_BR_D,        KC_BR_U,        _______,                 _______,        RGB_HUI,        RGB_VAI,        RGB_SPI,        RGB_SAI,        _______,        RESET,          
-    MU_TOG,         _______,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     _______,        _______,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        _______,        _______,        
-    MU_MOD,         _______,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    _______,        _______,                 _______,        _______,        KC_MS_BTN1,     KC_MS_BTN2,     _______,        _______,        _______,        
-    _______,        _______,        _______,        KC_MS_WH_UP,    KC_MS_BTN3,     _______,                                                 _______,        KC_PREV,        KC_NEXT,        _______,        _______,        _______,        
-    _______,        _______,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,        _______,        _______,        _______,        _______,        _______,        
+    MU_TOG,         _______,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     _______,        _______,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        _______,        KC_ASUP,        
+    MU_MOD,         _______,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    _______,        _______,                 _______,        _______,        KC_MS_BTN1,     KC_MS_BTN2,     _______,        _______,        KC_ASDN,        
+    _______,        _______,        _______,        KC_MS_WH_UP,    KC_MS_BTN3,     _______,                                                 _______,        KC_PREV,        KC_NEXT,        _______,        _______,        KC_ASRP,        
+    _______,        _______,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        _______,        _______,        _______,        _______,        _______,        
                                                                     _______,        _______,        _______,                 RGB_TOG,        RGB_MOD,        RGB_SLD
   ),
   [QWERTZ]   = LAYOUT_moonlander(
@@ -102,6 +102,31 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &dollar_key_override,
     &euro_key_override,
     NULL // Null terminate the array of overrides!
+};
+
+enum combos {
+  NR_COPY,
+  RS_PASTE,
+  NS_CUT,
+  HL_UNDO,
+  LM_REDO,
+  HM_SAVE,
+};
+
+const uint16_t PROGMEM nr_combo[] = {KC_N, KC_R, COMBO_END};
+const uint16_t PROGMEM rs_combo[] = {KC_R, KC_S, COMBO_END};
+const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
+const uint16_t PROGMEM hl_combo[] = {KC_H, KC_L, COMBO_END};
+const uint16_t PROGMEM lm_combo[] = {KC_L, KC_M, COMBO_END};
+const uint16_t PROGMEM hm_combo[] = {KC_H, KC_M, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [NR_COPY]  = COMBO(nr_combo, C(KC_C)),
+  [RS_PASTE] = COMBO(rs_combo, C(KC_V)),
+  [NS_CUT]   = COMBO(ns_combo, C(KC_X)),
+  [HL_UNDO]  = COMBO(hl_combo, C(DE_Z)),
+  [LM_REDO]  = COMBO(lm_combo, C(DE_Y)),
+  [HM_SAVE]  = COMBO(hm_combo, C(KC_S)),
 };
 
 /*
@@ -228,28 +253,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
-      }
-      return false;
-    // custom
-    case LT(0,KC_DOT):
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(KC_DOT);
-      } else if (record->event.pressed) {
-        tap_code16(C(KC_X)); // Intercept hold function to send Ctrl-X
-      }
-      return false;
-    case LT(0,DE_Z):
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(DE_Z);
-      } else if (record->event.pressed) {
-        tap_code16(C(KC_C)); // Intercept hold function to send Ctrl-C
-      }
-      return false;
-    case LT(0,KC_COMMA):
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(KC_COMMA);
-      } else if (record->event.pressed) {
-        tap_code16(C(KC_V)); // Intercept hold function to send Ctrl-V
       }
       return false;
     // Gruppenumschaltung

@@ -12,3 +12,6 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #define WAIT_FOR_USB
+
+#define COMBO_COUNT 6
+#define COMBO_ONLY_FROM_LAYER 0
