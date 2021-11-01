@@ -115,6 +115,7 @@ enum combos {
     HM_SAVE,
     LEDO_HOME,
     DOUP_END,
+    ZCOM_REF,
 };
 
 const uint16_t PROGMEM nr_combo[]   = {KC_N, KC_R, COMBO_END};
@@ -125,6 +126,7 @@ const uint16_t PROGMEM lm_combo[]   = {KC_L, KC_M, COMBO_END};
 const uint16_t PROGMEM hm_combo[]   = {KC_H, KC_M, COMBO_END};
 const uint16_t PROGMEM ledo_combo[] = {KC_LEFT, KC_DOWN, COMBO_END};
 const uint16_t PROGMEM doup_combo[] = {KC_DOWN, KC_UP, COMBO_END};
+const uint16_t PROGMEM zcom_combo[] = {DE_Z, KC_COMMA, COMBO_END};
 
 // clang-format off
 combo_t key_combos[COMBO_COUNT] = {
@@ -136,6 +138,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [HM_SAVE]   = COMBO(hm_combo, C(KC_S)),
   [LEDO_HOME] = COMBO(ledo_combo, KC_HOME),
   [DOUP_END]  = COMBO(doup_combo, KC_END),
+  [ZCOM_REF]  = COMBO(zcom_combo, C(KC_R)),
 };
 // clang-format on
 
