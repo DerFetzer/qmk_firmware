@@ -122,10 +122,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 const key_override_t capital_eszett_key_override = ko_make_basic(MOD_MASK_SHIFT, DE_SS, ALGR(KC_G));
-const key_override_t deg_key_override            = ko_make_basic(MOD_MASK_SHIFT, KC_1, DE_DEG);
-const key_override_t paragraph_key_override      = ko_make_basic(MOD_MASK_SHIFT, KC_2, DE_SECT);
-const key_override_t dollar_key_override         = ko_make_basic(MOD_MASK_SHIFT, KC_6, DE_DLR);
-const key_override_t euro_key_override           = ko_make_basic(MOD_MASK_SHIFT, KC_7, DE_EURO);
+const key_override_t deg_key_override            = ko_make_with_layers(MOD_MASK_SHIFT, KC_1, DE_DEG, 1 << BONE);
+const key_override_t paragraph_key_override      = ko_make_with_layers(MOD_MASK_SHIFT, KC_2, DE_SECT, 1 << BONE);
+const key_override_t dollar_key_override         = ko_make_with_layers(MOD_MASK_SHIFT, KC_6, DE_DLR, 1 << BONE);
+const key_override_t euro_key_override           = ko_make_with_layers(MOD_MASK_SHIFT, KC_7, DE_EURO, 1 << BONE);
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
