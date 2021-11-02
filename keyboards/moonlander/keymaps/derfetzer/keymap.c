@@ -23,7 +23,7 @@
 #define KC_PLAY KC_MEDIA_PLAY_PAUSE
 #define T_L_COL TOGGLE_LAYER_COLOR
 
-// colors
+// Colors
 #define PETROL 136, 204, 163
 #define ORANGE 25, 255, 237
 #define GREEN 63, 156, 208
@@ -45,6 +45,37 @@ enum layer_names {
     QWERTZ,
 };
 
+void macro_tog_key(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count > 3)
+        return;
+
+    keyrecord_t kr;
+    kr.event.pressed = false;
+    uint16_t action = DYN_REC_STOP;
+
+    if (state->count == 1) {
+        action = DYN_MACRO_PLAY1;
+    }
+    else if (state->count == 2) {
+        action = DYN_REC_STOP;
+        kr.event.pressed = true;
+    }
+    else if (state->count == 3) {
+        action = DYN_REC_START1;
+    }
+
+    process_dynamic_macro(action, &kr);
+}
+
+// Tap Dance declarations
+enum {
+    TD_MAC,
+};
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_MAC] = ACTION_TAP_DANCE_FN(macro_tog_key),
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
@@ -52,8 +83,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,          
     MO(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),     
     KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_K,           KC_RSHIFT,      
-    KC_LCTRL,       KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 _______,                        TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       
-                                                                    KC_SPACE,       KC_DELETE,      _______,                 KC_RCTRL,       KC_BSPACE,      KC_ENTER
+    KC_LCTRL,       KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       
+                                                                    KC_SPACE,       KC_DELETE,      KC_LOCK,                 KC_RCTRL,       KC_BSPACE,      KC_ENTER
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
     _______,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          _______,                 KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
@@ -252,11 +283,7 @@ void rgb_matrix_indicators_user(void) {
 }
 
 void gruppenumschaltung(uint16_t keycode) {
-    tap_code16(ALGR(KC_F));
-  tap_code16(ALGR(KC_F)); 
-    tap_code16(ALGR(KC_F));
-    tap_code16(keycode);
-  tap_code16(keycode); 
+    tap_code16(ALGR(KC_F)); 
     tap_code16(keycode);
 }
 
