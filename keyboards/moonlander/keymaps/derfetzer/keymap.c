@@ -21,6 +21,9 @@
 #define BLUE 154, 255, 255
 #define RED 0, 239, 185
 
+// LED array terminator
+#define LEDS_END 0xFF
+
 enum custom_keycodes {
     RGB_SLD = ML_SAFE_RANGE,
     DE_LSPO,
@@ -219,6 +222,18 @@ void set_led_color(int i, int h, int s, int v) {
     }
 }
 
+void set_led_color_multiple(const uint8_t leds[], int h, int s, int v) {
+    for (size_t i = 0; leds[i] != LEDS_END; i++)
+    {
+        set_led_color(leds[i], h, s, v);
+    }
+}
+
+const uint8_t PROGMEM arrows[] = {12, 16, 17, 22, LEDS_END};
+const uint8_t PROGMEM num[]    = {57, 52, 47, 58, 53, 48, 59, 54, 49, 55, LEDS_END};
+const uint8_t PROGMEM wheel[]  = {14, 18, 19, 24, LEDS_END};
+const uint8_t PROGMEM wasd[]   = {7, 11, 12, 17, LEDS_END};
+
 void rgb_matrix_indicators_user(void) {
     if (keyboard_config.disable_layer_led) {
         return;
@@ -233,42 +248,21 @@ void rgb_matrix_indicators_user(void) {
         case 2:
             set_led_color(-1, 0, 0, 0);
             // Arrows
-            set_led_color(12, RED);
-            set_led_color(16, RED);
-            set_led_color(17, RED);
-            set_led_color(22, RED);
+            set_led_color_multiple(arrows, RED);
             // Num
-            set_led_color(57, BLUE);
-            set_led_color(52, BLUE);
-            set_led_color(47, BLUE);
-            set_led_color(58, BLUE);
-            set_led_color(53, BLUE);
-            set_led_color(48, BLUE);
-            set_led_color(59, BLUE);
-            set_led_color(54, BLUE);
-            set_led_color(49, BLUE);
-            set_led_color(55, BLUE);
+            set_led_color_multiple(num, BLUE);
             break;
         case 3:
             set_led_color(-1, RED);
             // Mouse
-            set_led_color(12, GREEN);
-            set_led_color(16, GREEN);
-            set_led_color(17, GREEN);
-            set_led_color(22, GREEN);
+            set_led_color_multiple(arrows, GREEN);
             // Wheel
-            set_led_color(14, BLUE);
-            set_led_color(18, BLUE);
-            set_led_color(19, BLUE);
-            set_led_color(24, BLUE);
+            set_led_color_multiple(wheel, BLUE);
             break;
         case 4:
             set_led_color(-1, GREEN);
             // WASD
-            set_led_color(7, ORANGE);
-            set_led_color(11, ORANGE);
-            set_led_color(12, ORANGE);
-            set_led_color(17, ORANGE);
+            set_led_color_multiple(wasd, ORANGE);
             break;
         default:
             if (rgb_matrix_get_flags() == LED_FLAG_NONE) rgb_matrix_set_color_all(0, 0, 0);
