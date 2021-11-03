@@ -40,21 +40,18 @@ enum layer_names {
 };
 
 void macro_tog_key(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count > 3)
-        return;
+    if (state->count > 3) return;
 
     keyrecord_t kr;
     kr.event.pressed = false;
-    uint16_t action = DYN_REC_STOP;
+    uint16_t action  = DYN_REC_STOP;
 
     if (state->count == 1) {
         action = DYN_MACRO_PLAY1;
-    }
-    else if (state->count == 2) {
-        action = DYN_REC_STOP;
+    } else if (state->count == 2) {
+        action           = DYN_REC_STOP;
         kr.event.pressed = true;
-    }
-    else if (state->count == 3) {
+    } else if (state->count == 3) {
         action = DYN_REC_START1;
     }
 
@@ -207,8 +204,6 @@ void set_led_color(int i, int h, int s, int v) {
         .r = 0,
         .g = 0,
         .b = 0,
-    .b = 0,
-        .b = 0,
     };
     float f = 0.0;
     if (hsv.h || hsv.s || hsv.v) {
@@ -223,8 +218,7 @@ void set_led_color(int i, int h, int s, int v) {
 }
 
 void set_led_color_multiple(const uint8_t leds[], int h, int s, int v) {
-    for (size_t i = 0; leds[i] != LEDS_END; i++)
-    {
+    for (size_t i = 0; leds[i] != LEDS_END; i++) {
         set_led_color(leds[i], h, s, v);
     }
 }
