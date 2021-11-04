@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MU_TOG,         _______,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     _______,        _______,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        _______,        KC_ASUP,
     MU_MOD,         _______,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    _______,        _______,                 _______,        _______,        KC_MS_BTN1,     KC_MS_BTN2,     _______,        _______,        KC_ASDN,
     _______,        _______,        _______,        KC_MS_WH_UP,    KC_MS_BTN3,     _______,                                                 _______,        KC_PREV,        KC_NEXT,        _______,        _______,        KC_ASRP,
-    _______,        _______,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        _______,        _______,        _______,        _______,        _______,
+    _______,        _______,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        _______,        _______,        _______,        _______,        KC_ASTG,
                                                                     _______,        _______,        _______,                 RGB_TOG,        RGB_MOD,        RGB_SLD
   ),
   [QWERTZ]   = LAYOUT_moonlander(
