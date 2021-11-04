@@ -70,15 +70,15 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           _______,                 KC_ET_DEV,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
+    KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          _______,                 KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,
-    MO(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),
+    TT(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),
     KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_K,           KC_RSHIFT,
     KC_LCTRL,       KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
                                                                     KC_SPACE,       KC_DELETE,      KC_LOCK,                 KC_RCTRL,       KC_BSPACE,      KC_ENTER
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
-    _______,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          _______,                 KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,
+    _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           _______,                 KC_ET_DEV,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
     _______,        DE_DEG,         DE_UNDS,        DE_LBRC,        DE_RBRC,        DE_CIRC,        _______,                 _______,        DE_EXLM,        DE_LABK,        DE_RABK,        DE_EQL,         DE_AMPR,        DE_AT,
     _______,        DE_BSLS,        DE_SLSH,        DE_LCBR,        DE_RCBR,        DE_ASTR,        _______,                 _______,        DE_QUES,        DE_LPRN,        DE_RPRN,        DE_MINS,        DE_COLN,        _______,
     _______,        DE_HASH,        DE_DLR,         DE_PIPE,        DE_TILD,        DE_GRV,                                                  DE_PLUS,        DE_PERC,        DE_DQUO,        DE_QUOT,        DE_SCLN,        DE_EURO,
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPSLOCK,    KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_INT3,                 _______,        KC_H,           KC_J,           KC_K,           KC_L,           DE_ODIA,        DE_ADIA,
     KC_LSHIFT,      DE_Y,           KC_X,           KC_C,           KC_V,           KC_B,                                                    KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RSFT_T(DE_MINS),KC_RSHIFT,
     KC_LCTRL,       KC_LGUI,        KC_LALT,        KC_RALT,        KC_RCTRL,                       KC_INT4,                 KC_INT7,                        KC_NUMLOCK,     KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
-                                                                    KC_ENTER,       KC_DELETE,      KC_INT5,                 KC_INT6,        KC_BSPACE,      KC_SPACE
+                                                                    _______,        _______,        KC_INT5,                 KC_INT6,        _______,        _______
   ),
 };
 // clang-format on
