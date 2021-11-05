@@ -13,5 +13,5 @@
 
 #define WAIT_FOR_USB
 
-#define COMBO_COUNT 10
+#define COMBO_COUNT 12
 #define COMBO_ONLY_FROM_LAYER 0
