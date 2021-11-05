@@ -11,3 +11,5 @@ COMBO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 KEY_LOCK_ENABLE = yes
+VPATH  +=  keyboards/gboards/
+COMBO_ENABLE=yes

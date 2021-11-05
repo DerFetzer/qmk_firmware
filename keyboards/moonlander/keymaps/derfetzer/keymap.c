@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "keymap_german.h"
+#include "g/keymap_combo.h"
 
 // Shorter codes
 #define KC_MUTE KC_AUDIO_MUTE
@@ -128,51 +129,6 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &euro_key_override,
     NULL  // Null terminate the array of overrides!
 };
-
-enum combos {
-    NR_COPY,
-    RS_PASTE,
-    NS_CUT,
-    HL_UNDO,
-    LM_REDO,
-    HM_SAVE,
-    LEDO_HOME,
-    DOUP_END,
-    ZCOM_ALL,
-    COMDOT_REF,
-    ZDOT_FIND,
-    ZCOMDOT_FINDALL,
-};
-
-const uint16_t PROGMEM nr_combo[]      = {KC_N, KC_R, COMBO_END};
-const uint16_t PROGMEM rs_combo[]      = {KC_R, KC_S, COMBO_END};
-const uint16_t PROGMEM ns_combo[]      = {KC_N, KC_S, COMBO_END};
-const uint16_t PROGMEM hl_combo[]      = {KC_H, KC_L, COMBO_END};
-const uint16_t PROGMEM lm_combo[]      = {KC_L, KC_M, COMBO_END};
-const uint16_t PROGMEM hm_combo[]      = {KC_H, KC_M, COMBO_END};
-const uint16_t PROGMEM ledo_combo[]    = {KC_LEFT, KC_DOWN, COMBO_END};
-const uint16_t PROGMEM doup_combo[]    = {KC_DOWN, KC_UP, COMBO_END};
-const uint16_t PROGMEM zcom_combo[]    = {DE_Z, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM comdot_combo[]  = {KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM zdot_combo[]    = {DE_Z, KC_DOT, COMBO_END};
-const uint16_t PROGMEM zcomdot_combo[] = {DE_Z, KC_COMMA, KC_DOT, COMBO_END};
-
-// clang-format off
-combo_t key_combos[COMBO_COUNT] = {
-  [NR_COPY]         = COMBO(nr_combo, C(KC_C)),
-  [RS_PASTE]        = COMBO(rs_combo, C(KC_V)),
-  [NS_CUT]          = COMBO(ns_combo, C(KC_X)),
-  [HL_UNDO]         = COMBO(hl_combo, C(DE_Z)),
-  [LM_REDO]         = COMBO(lm_combo, C(DE_Y)),
-  [HM_SAVE]         = COMBO(hm_combo, C(KC_S)),
-  [LEDO_HOME]       = COMBO(ledo_combo, KC_HOME),
-  [DOUP_END]        = COMBO(doup_combo, KC_END),
-  [ZCOM_ALL]        = COMBO(zcom_combo, C(KC_A)),
-  [COMDOT_REF]      = COMBO(comdot_combo, C(KC_R)),
-  [ZDOT_FIND]       = COMBO(zdot_combo, C(KC_F)),
-  [ZCOMDOT_FINDALL] = COMBO(zcomdot_combo, S(C(KC_F))),
-};
-// clang-format on
 
 /*
 g_led_config
