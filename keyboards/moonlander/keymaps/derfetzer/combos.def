@@ -1,3 +1,4 @@
+// Right hand
 COMB(NR_COPY,         C(KC_C),     KC_N, KC_R)
 COMB(RS_PASTE,        C(KC_V),     KC_R, KC_S)
 COMB(NS_CUT,          C(KC_X),     KC_N, KC_S)
@@ -10,3 +11,15 @@ COMB(ZCOM_ALL,        C(KC_A),     DE_Z, KC_COMMA)
 COMB(COMDOT_REF,      C(KC_R),     KC_COMMA, KC_DOT)
 COMB(ZDOT_FIND,       C(KC_F),     DE_Z, KC_DOT)
 COMB(ZCOMDOT_FINDALL, S(C(KC_F)),  DE_Z, KC_COMMA, KC_DOT)
+
+// Left hand
+COMB(EI_COPY,         C(KC_C),     KC_I, KC_E)
+COMB(TI_PASTE,        C(KC_V),     KC_T, KC_I)
+COMB(TE_CUT,          C(KC_X),     KC_T, KC_E)
+COMB(UA_UNDO,         C(DE_Z),     KC_U, KC_A)
+COMB(DU_REDO,         C(DE_Y),     KC_D, KC_U)
+COMB(DA_SAVE,         C(KC_S),     KC_D, KC_A)
+COMB(UDAD_ALL,        C(KC_A),     DE_UDIA, DE_ADIA)
+COMB(VUD_REF,         C(KC_R),     KC_V, DE_UDIA)
+COMB(VAD_REF_FIND,    C(KC_F),     KC_V, DE_ADIA)
+COMB(VUDAD_FINDALL,   S(C(KC_F)),  KC_V, DE_ADIA, DE_UDIA)
