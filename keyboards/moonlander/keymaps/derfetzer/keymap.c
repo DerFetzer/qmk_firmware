@@ -88,8 +88,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                     _______,        _______,        _______,                 _______,        _______,        _______
   ),
   [CONTROLS] = LAYOUT_moonlander(
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,                 _______,        _______,        _______,        DE_SLSH,        DE_ASTR,        _______,        _______,
-    _______,        KC_PGUP,        KC_BSPACE,      KC_UP,          KC_DELETE,      KC_PGDOWN,      _______,                 _______,        _______,        KC_7,           KC_8,           KC_9,           DE_PLUS,        DE_MINS,
+    _______,        _______,        _______,        _______,        _______,        _______,        _______,                 _______,        _______,        _______,        DE_SLSH,        DE_ASTR,        DE_MINS,        _______,
+    _______,        KC_PGUP,        KC_BSPACE,      KC_UP,          KC_DELETE,      KC_PGDOWN,      _______,                 _______,        _______,        KC_7,           KC_8,           KC_9,           DE_PLUS,        _______,
     _______,        KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_END,         _______,                 _______,        _______,        KC_4,           KC_5,           KC_6,           KC_COMMA,       KC_DOT,
     _______,        _______,        _______,        _______,        KC_ENTER,       _______,                                                 KC_0,           KC_1,           KC_2,           KC_3,           DE_SCLN,        KC_RSHIFT,
     _______,        _______,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,      _______,        KC_RCTRL,
