@@ -80,31 +80,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                     KC_SPACE,       KC_DELETE,      KC_LOCK,                 RCTL_T_SPACE,   KC_BSPACE,      KC_ENTER
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
-    _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           _______,                 KC_ET_DEV,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
-    _______,        DE_DEG,         DE_UNDS,        DE_LBRC,        DE_RBRC,        DE_CIRC,        _______,                 _______,        DE_EXLM,        DE_LABK,        DE_RABK,        DE_EQL,         DE_AMPR,        DE_AT,
-    _______,        DE_BSLS,        DE_SLSH,        DE_LCBR,        DE_RCBR,        DE_ASTR,        _______,                 _______,        DE_QUES,        DE_LPRN,        DE_RPRN,        DE_MINS,        DE_COLN,        _______,
+    _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           XXXXXXX,                 KC_ET_DEV,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           XXXXXXX,
+    _______,        DE_DEG,         DE_UNDS,        DE_LBRC,        DE_RBRC,        DE_CIRC,        XXXXXXX,                 XXXXXXX,        DE_EXLM,        DE_LABK,        DE_RABK,        DE_EQL,         DE_AMPR,        DE_AT,
+    _______,        DE_BSLS,        DE_SLSH,        DE_LCBR,        DE_RCBR,        DE_ASTR,        XXXXXXX,                 XXXXXXX,        DE_QUES,        DE_LPRN,        DE_RPRN,        DE_MINS,        DE_COLN,        _______,
     _______,        DE_HASH,        DE_DLR,         DE_PIPE,        DE_TILD,        DE_GRV,                                                  DE_PLUS,        DE_PERC,        DE_DQUO,        DE_QUOT,        DE_SCLN,        DE_EURO,
     _______,        _______,        _______,        _______,        _______,                        _______,                 _______,                        _______,        _______,        _______,        _______,        _______,
                                                                     _______,        _______,        _______,                 _______,        _______,        _______
   ),
   [CONTROLS] = LAYOUT_moonlander(
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,                 _______,        _______,        _______,        DE_SLSH,        DE_ASTR,        DE_MINS,        _______,
-    _______,        KC_PGUP,        KC_BSPACE,      KC_UP,          KC_DELETE,      KC_PGDOWN,      _______,                 _______,        _______,        KC_7,           KC_8,           KC_9,           DE_PLUS,        _______,
-    _______,        KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_END,         _______,                 _______,        _______,        KC_4,           KC_5,           KC_6,           KC_COMMA,       KC_DOT,
-    _______,        _______,        _______,        _______,        KC_ENTER,       _______,                                                 KC_0,           KC_1,           KC_2,           KC_3,           DE_SCLN,        KC_RSHIFT,
-    _______,        _______,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,      _______,        KC_RCTRL,
+    _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,                 XXXXXXX,        XXXXXXX,        XXXXXXX,        DE_SLSH,        DE_ASTR,        DE_MINS,        XXXXXXX,
+    _______,        KC_PGUP,        KC_BSPACE,      KC_UP,          KC_DELETE,      KC_PGDOWN,      XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_7,           KC_8,           KC_9,           DE_PLUS,        XXXXXXX,
+    _______,        KC_HOME,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_END,         XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_4,           KC_5,           KC_6,           KC_COMMA,       KC_DOT,
+    _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_ENTER,       XXXXXXX,                                                 KC_0,           KC_1,           KC_2,           KC_3,           DE_SCLN,        KC_RSHIFT,
+    _______,        _______,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,      XXXXXXX,        KC_RCTRL,
                                                                     _______,        _______,        _______,                 _______,        _______,        _______
   ),
   [MEDIA]    = LAYOUT_moonlander(
-    AU_TOG,         KC_MUTE,        KC_V_D,         KC_V_U,         KC_BR_D,        KC_BR_U,        _______,                 _______,        RGB_HUI,        RGB_VAI,        RGB_SPI,        RGB_SAI,        _______,        RESET,
-    MU_TOG,         _______,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     _______,        _______,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        _______,        KC_ASUP,
-    MU_MOD,         _______,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    _______,        _______,                 _______,        _______,        KC_MS_BTN1,     KC_MS_BTN2,     _______,        _______,        KC_ASDN,
-    _______,        _______,        _______,        KC_MS_WH_UP,    KC_MS_BTN3,     _______,                                                 _______,        KC_PREV,        KC_NEXT,        _______,        _______,        KC_ASRP,
-    _______,        _______,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        _______,        _______,        _______,        _______,        KC_ASTG,
+    AU_TOG,         KC_MUTE,        KC_V_D,         KC_V_U,         KC_BR_D,        KC_BR_U,        XXXXXXX,                 XXXXXXX,        RGB_HUI,        RGB_VAI,        RGB_SPI,        RGB_SAI,        XXXXXXX,        RESET,
+    MU_TOG,         XXXXXXX,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     XXXXXXX,        XXXXXXX,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        XXXXXXX,        KC_ASUP,
+    MU_MOD,         XXXXXXX,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    XXXXXXX,        XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_MS_BTN1,     KC_MS_BTN2,     XXXXXXX,        XXXXXXX,        KC_ASDN,
+    XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_WH_UP,    KC_MS_BTN3,     XXXXXXX,                                                 XXXXXXX,        KC_PREV,        KC_NEXT,        XXXXXXX,        XXXXXXX,        KC_ASRP,
+    XXXXXXX,        XXXXXXX,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_ASTG,
                                                                     _______,        _______,        _______,                 RGB_TOG,        RGB_MOD,        RGB_SLD
   ),
   [QWERTZ]   = LAYOUT_moonlander(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_INT1,                 KC_INT8,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
+    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_INT1,                 KC_INT8,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           XXXXXXX,
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_INT2,                 KC_INT9,        DE_Z,           KC_U,           KC_I,           KC_O,           KC_P,           DE_UDIA,
     KC_CAPSLOCK,    KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_INT3,                 _______,        KC_H,           KC_J,           KC_K,           KC_L,           DE_ODIA,        DE_ADIA,
     KC_LSHIFT,      DE_Y,           KC_X,           KC_C,           KC_V,           KC_B,                                                    KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RSFT_T(DE_MINS),KC_RSHIFT,
