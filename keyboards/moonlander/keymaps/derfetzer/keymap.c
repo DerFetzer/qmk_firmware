@@ -74,10 +74,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_PSCR,                 KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,
-    TT(1),          KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           LT(1,KC_Q),
+    KC_ESCAPE,      KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           KC_Q,
     KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_K,           KC_RSHIFT,
-    KC_LCTRL,       KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
-                                                                    KC_SPACE,       KC_DELETE,      KC_LOCK,                 RCTL_T_SPACE,   KC_BSPACE,      KC_ENTER
+    OSM(MOD_LCTL),  KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
+                                                                    LT(1,KC_SPACE), KC_DELETE,      KC_CAPS,                 RCTL_T_SPACE,   KC_BSPACE,      LT(1,KC_ENTER)
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
     _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           XXXXXXX,                 KC_ET_DEV,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           XXXXXXX,
@@ -127,7 +127,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &deg_key_override,
     &dollar_key_override,
     &euro_key_override,
-    NULL  // Null terminate the array of overrides!
+    NULL // Null terminate the array of overrides!
 };
 
 /*
@@ -255,4 +255,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
     return true;
+}
+
+void caps_word_set_user(bool active) {
+    ML_LED_1(active);
 }
