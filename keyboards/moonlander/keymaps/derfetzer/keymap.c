@@ -60,13 +60,31 @@ void macro_tog_key(qk_tap_dance_state_t *state, void *user_data) {
     process_dynamic_macro(action, &kr);
 }
 
+void dance_bs_finished(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        register_code(KC_BSPACE);
+    } else {
+        register_code16(LCTL(KC_BSPACE));
+    }
+}
+
+void dance_bs_reset(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        unregister_code(KC_BSPACE);
+    } else {
+        unregister_code16(LCTL(KC_BSPACE));
+    }
+}
+
 // Tap Dance declarations
 enum {
     TD_MAC,
+    TD_BS,
 };
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_MAC] = ACTION_TAP_DANCE_FN(macro_tog_key),
+    [TD_BS]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_bs_finished, dance_bs_reset),
 };
 
 // clang-format off
@@ -76,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_J,           KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           KC_W,           DE_SS,
     KC_ESCAPE,      KC_C,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_G,           KC_Q,
     KC_LSHIFT,      KC_F,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_K,           KC_RSHIFT,
-    OSM(MOD_LCTL),  KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        TT(2),                          KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
-                                                                    LT(1,KC_SPACE), KC_DELETE,      KC_CAPS,                 RCTL_T_SPACE,   KC_BSPACE,      LT(1,KC_ENTER)
+    OSM(MOD_LCTL),  KC_LGUI,        LALT(KC_LCTRL), KC_LALT,        LT(2,KC_ESCAPE),                KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
+                                                                    LT(1,KC_SPACE), KC_DELETE,      KC_CAPS,                 RCTL_T_SPACE,   TD(TD_BS),      LT(1,KC_ENTER)
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
     _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           XXXXXXX,                 KC_ET_DEV,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           XXXXXXX,
