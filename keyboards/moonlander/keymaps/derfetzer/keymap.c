@@ -27,7 +27,7 @@
 #define LEDS_END 0xFF
 
 enum custom_keycodes {
-    RGB_SLD = ML_SAFE_RANGE,
+    RGB_SLD = SAFE_RANGE,
     DE_LSPO,
     DE_RSPC,
     DE_QUO_O,
@@ -41,38 +41,38 @@ enum layer_names {
     QWERTZ,
 };
 
-void macro_tog_key(qk_tap_dance_state_t *state, void *user_data) {
+void macro_tog_key(tap_dance_state_t *state, void *user_data) {
     if (state->count > 3) return;
 
     keyrecord_t kr;
     kr.event.pressed = false;
-    uint16_t action  = DYN_REC_STOP;
+    uint16_t action  = DM_RSTP;
 
     if (state->count == 1) {
-        action = DYN_MACRO_PLAY1;
+        action = DM_REC1;
     } else if (state->count == 2) {
-        action           = DYN_REC_STOP;
+        action           = DM_RSTP;
         kr.event.pressed = true;
     } else if (state->count == 3) {
-        action = DYN_REC_START1;
+        action = DM_REC1;
     }
 
     process_dynamic_macro(action, &kr);
 }
 
-void dance_bs_finished(qk_tap_dance_state_t *state, void *user_data) {
+void dance_bs_finished(tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
-        register_code(KC_BSPACE);
+        register_code(KC_BSPC);
     } else {
-        register_code16(LCTL(KC_BSPACE));
+        register_code16(LCTL(KC_BSPC));
     }
 }
 
-void dance_bs_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dance_bs_reset(tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
-        unregister_code(KC_BSPACE);
+        unregister_code(KC_BSPC);
     } else {
-        unregister_code16(LCTL(KC_BSPACE));
+        unregister_code16(LCTL(KC_BSPC));
     }
 }
 
@@ -82,7 +82,7 @@ enum {
     TD_BS,
 };
 // Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_MAC] = ACTION_TAP_DANCE_FN(macro_tog_key),
     [TD_BS]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_bs_finished, dance_bs_reset),
 };
@@ -93,8 +93,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_PSCR,                 KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,
     KC_ESCAPE,      XXXXXXX,        KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           XXXXXXX,        XXXXXXX,
     KC_TAB,         KC_J,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_W,           DE_SS,
-    KC_LSHIFT,      KC_C,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_G,           KC_Q,
-    OSM(MOD_LCTL),  KC_F,           KC_LGUI,        KC_LALT,        LT(2,KC_ESCAPE),                KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_UP,          KC_DOWN,        KC_K,           KC_RSHIFT,
+    KC_LSFT,        KC_C,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_G,           KC_Q,
+    OSM(MOD_LCTL),  KC_F,           KC_LGUI,        KC_LALT,        LT(2,KC_ESCAPE),                KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_UP,          KC_DOWN,        KC_K,           KC_RSFT,
                                                                     LT(1,KC_SPACE), KC_DELETE,      KC_CAPS,                 RCTL_T_SPACE,   TD(TD_BS),      LT(1,KC_ENTER)
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
@@ -107,26 +107,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [CONTROLS] = LAYOUT_moonlander(
     _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,                 XXXXXXX,        XXXXXXX,        XXXXXXX,        DE_SLSH,        DE_ASTR,         XXXXXXX,       XXXXXXX,
-    _______,        XXXXXXX,        KC_BSPACE,      KC_UP,          KC_DELETE,      KC_PGDOWN,      XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_7,           KC_8,           KC_9,            DE_MINS,       XXXXXXX,
+    _______,        XXXXXXX,        KC_BSPC,        KC_UP,          KC_DELETE,      KC_PGDN,        XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_7,           KC_8,           KC_9,            DE_MINS,       XXXXXXX,
     _______,        KC_PGUP,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_END,         XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_4,           KC_5,           KC_6,            DE_PLUS,       KC_DOT,
-    _______,        KC_HOME,        XXXXXXX,        XXXXXXX,        KC_ENTER,       XXXXXXX,                                                 KC_0,           KC_1,           KC_2,           KC_3,            KC_COMMA,      KC_RSHIFT,
-    _______,        XXXXXXX,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,       DE_SCLN,       KC_RCTRL,
+    _______,        KC_HOME,        XXXXXXX,        XXXXXXX,        KC_ENTER,       XXXXXXX,                                                 KC_0,           KC_1,           KC_2,           KC_3,            KC_COMMA,      KC_RSFT,
+    _______,        XXXXXXX,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,       DE_SCLN,       KC_RCTL,
                                                                     _______,        _______,        _______,                 _______,        _______,        _______                                           
   ),
   [MEDIA]    = LAYOUT_moonlander(
-    AU_TOG,         KC_MUTE,        KC_V_D,         KC_V_U,         KC_BR_D,        KC_BR_U,        XXXXXXX,                 XXXXXXX,        RGB_HUI,        RGB_VAI,        RGB_SPI,        RGB_SAI,        XXXXXXX,        RESET,
-    MU_TOG,         XXXXXXX,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     XXXXXXX,        XXXXXXX,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        XXXXXXX,        KC_ASUP,
-    MU_MOD,         XXXXXXX,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    XXXXXXX,        XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_MS_BTN1,     KC_MS_BTN2,     XXXXXXX,        XXXXXXX,        KC_ASDN,
-    XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_WH_UP,    KC_MS_BTN3,     XXXXXXX,                                                 XXXXXXX,        KC_PREV,        KC_NEXT,        XXXXXXX,        XXXXXXX,        KC_ASRP,
-    XXXXXXX,        XXXXXXX,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_ASTG,
+    AU_TOGG,        KC_MUTE,        KC_V_D,         KC_V_U,         KC_BR_D,        KC_BR_U,        XXXXXXX,                 XXXXXXX,        RGB_HUI,        RGB_VAI,        RGB_SPI,        RGB_SAI,        XXXXXXX,        XXXXXXX,
+    MU_TOGG,        XXXXXXX,        KC_MS_BTN2,     KC_MS_UP,       KC_MS_BTN1,     XXXXXXX,        XXXXXXX,                 _______,        RGB_HUD,        RGB_VAD,        RGB_SPD,        RGB_SAD,        XXXXXXX,        AS_UP,
+    MU_NEXT,        XXXXXXX,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    XXXXXXX,        XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_MS_BTN1,     KC_MS_BTN2,     XXXXXXX,        XXXXXXX,        AS_DOWN,
+    XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_WH_UP,    KC_MS_BTN3,     XXXXXXX,                                                 XXXXXXX,        KC_PREV,        KC_NEXT,        XXXXXXX,        XXXXXXX,        AS_RPT,
+    XXXXXXX,        XXXXXXX,        KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_RIGHT,                 _______,                 T_L_COL,                        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        AS_TOGG,
                                                                     _______,        _______,        _______,                 RGB_TOG,        RGB_MOD,        RGB_SLD
   ),
   [QWERTZ]   = LAYOUT_moonlander(
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_INT1,                 KC_INT8,        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           XXXXXXX,
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_INT2,                 KC_INT9,        DE_Z,           KC_U,           KC_I,           KC_O,           KC_P,           DE_UDIA,
-    KC_CAPSLOCK,    KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_INT3,                 _______,        KC_H,           KC_J,           KC_K,           KC_L,           DE_ODIA,        DE_ADIA,
-    KC_LSHIFT,      DE_Y,           KC_X,           KC_C,           KC_V,           KC_B,                                                    KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RSFT_T(DE_MINS),KC_RSHIFT,
-    KC_LCTRL,       KC_LGUI,        KC_LALT,        KC_RALT,        KC_RCTRL,                       KC_INT4,                 KC_INT7,                        KC_NUMLOCK,     KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
+    KC_CAPS,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_INT3,                 _______,        KC_H,           KC_J,           KC_K,           KC_L,           DE_ODIA,        DE_ADIA,
+    KC_LSFT,        DE_Y,           KC_X,           KC_C,           KC_V,           KC_B,                                                    KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RSFT_T(DE_MINS),KC_RSFT,
+    KC_LCTL,        KC_LGUI,        KC_LALT,        KC_RALT,        KC_RCTL,                        KC_INT4,                 KC_INT7,                        KC_NUM,         KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,
                                                                     _______,        _______,        KC_INT5,                 KC_INT6,        _______,        _______
   ),
 };
@@ -209,9 +209,9 @@ const uint8_t PROGMEM num[]    = {57, 52, 47, 58, 53, 48, 59, 54, 49, 55, LEDS_E
 const uint8_t PROGMEM wheel[]  = {14, 18, 19, 24, LEDS_END};
 const uint8_t PROGMEM wasd[]   = {7, 11, 12, 17, LEDS_END};
 
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
     if (keyboard_config.disable_layer_led) {
-        return;
+        return false;
     }
     switch (biton32(layer_state)) {
         case 0:
@@ -243,6 +243,7 @@ void rgb_matrix_indicators_user(void) {
             if (rgb_matrix_get_flags() == LED_FLAG_NONE) rgb_matrix_set_color_all(0, 0, 0);
             break;
     }
+    return false;
 }
 
 void gruppenumschaltung(uint16_t keycode) {
