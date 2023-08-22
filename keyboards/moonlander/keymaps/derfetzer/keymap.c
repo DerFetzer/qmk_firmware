@@ -91,10 +91,10 @@ tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BONE]     = LAYOUT_moonlander(
     KC_SYRQ,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_PSCR,                 KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,
-    KC_ESCAPE,      XXXXXXX,        KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TG(3),          KC_P,           KC_H,           KC_L,           KC_M,           XXXXXXX,        XXXXXXX,
-    KC_TAB,         KC_J,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TG(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_W,           DE_SS,
+    XXXXXXX,        XXXXXXX,        KC_D,           KC_U,           KC_A,           KC_X,           DE_GRV,                  TT(3),          KC_P,           KC_H,           KC_L,           KC_M,           XXXXXXX,        XXXXXXX,
+    XXXXXXX,        KC_J,           KC_T,           KC_I,           KC_E,           KC_O,           DE_ACUT,                 TT(4),          KC_B,           KC_N,           KC_R,           KC_S,           KC_W,           DE_SS,
     KC_LSFT,        KC_C,           KC_V,           DE_UDIA,        DE_ADIA,        DE_ODIA,                                                 DE_Y,           DE_Z,           KC_COMMA,       KC_DOT,         KC_G,           KC_Q,
-    OSM(MOD_LCTL),  KC_F,           KC_LGUI,        KC_LALT,        LT(2,KC_ESCAPE),                KC_PLAY,                 TD(TD_MAC),                     TT(2),          KC_UP,          KC_DOWN,        KC_K,           KC_RSFT,
+    KC_LCTL,        KC_F,           KC_LGUI,        KC_LALT,        LT(2,KC_ESCAPE),                KC_PLAY,                 TD(TD_MAC),                     TG(2),          KC_TAB,         XXXXXXX,        KC_K,           KC_RSFT,
                                                                     LT(1,KC_SPACE), KC_DELETE,      KC_CAPS,                 RCTL_T_SPACE,   TD(TD_BS),      LT(1,KC_ENTER)
   ),
   [SYMBOLS]  = LAYOUT_moonlander(
@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,        KC_PGUP,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_END,         XXXXXXX,                 XXXXXXX,        XXXXXXX,        KC_4,           KC_5,           KC_6,            DE_PLUS,       KC_DOT,
     _______,        KC_HOME,        XXXXXXX,        XXXXXXX,        KC_ENTER,       XXXXXXX,                                                 KC_0,           KC_1,           KC_2,           KC_3,            KC_COMMA,      KC_RSFT,
     _______,        XXXXXXX,        _______,        _______,        _______,                        _______,                 _______,                        _______,        KC_0,           KC_KP_DOT,       DE_SCLN,       KC_RCTL,
-                                                                    _______,        _______,        _______,                 _______,        _______,        _______                                           
+                                                                    _______,        _______,        _______,                 _______,        _______,        _______
   ),
   [MEDIA]    = LAYOUT_moonlander(
     AU_TOGG,        KC_MUTE,        KC_V_D,         KC_V_U,         KC_BR_D,        KC_BR_U,        XXXXXXX,                 XXXXXXX,        RGB_HUI,        RGB_VAI,        RGB_SPI,        RGB_SAI,        XXXXXXX,        XXXXXXX,
